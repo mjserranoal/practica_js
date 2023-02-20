@@ -80,7 +80,7 @@ class Casilla {
             if (this.tiene_barco == true) {
                 return " "+ this.barco+" "
             } else {
-                return " agua "
+                return " vaci "
             }
         }
     }
@@ -122,6 +122,23 @@ class Tablero {
         this.barcos[7] = lancha1
         this.barcos[8] = lancha2
         this.barcos[9] = lancha3
+    }
+
+    determinar_letra(indice){
+        let letras = {
+            0: "J",
+            1: "I",
+            2: "H",
+            3: "G",
+            4: "F",
+            5: "E",
+            6: "D",
+            7: "C",
+            8: "B",
+            9: "A"
+        }
+
+        return letras[indice];
     }
     
     pintar(nombre) {
@@ -313,7 +330,7 @@ class Tablero {
 
         this.filas[x][y].disparada = true
 
-        console.log("Se ha disparado a la Casilla %s:%s", x, y)
+        console.log("Se ha disparado a la Casilla %s:%s", this.determinar_letra(x), y+1)
 
         if(this.filas[x][y].tiene_barco == true) {
             respuesta[0] = true
@@ -374,16 +391,14 @@ tablero_azul_propio.colocar_barcos()
 tablero_rojo_adversario.clonar_posicion_barcos(tablero_azul_propio.filas)
 tablero_azul_adversario.clonar_posicion_barcos(tablero_rojo_propio.filas)
 
-
-tablero_rojo_propio.pintar(jugador_rojo.nombre + " propio");
-tablero_azul_propio.pintar(jugador_azul.nombre + " propio");
-
-
 console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 console.log("Bienvenid@ a la Guerra")
 console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 console.log("Empiezan las Batallas")
 console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+tablero_rojo_propio.pintar(jugador_rojo.nombre + " propio");
+tablero_azul_propio.pintar(jugador_azul.nombre + " propio");
 
 let contador = 0
 
